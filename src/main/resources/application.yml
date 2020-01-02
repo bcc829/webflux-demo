@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    properties:
+      format_sql: true
+      temp:
+        use_jdbc_metadata_defaults: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springdata
+    username: keesun
+    password: pass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
