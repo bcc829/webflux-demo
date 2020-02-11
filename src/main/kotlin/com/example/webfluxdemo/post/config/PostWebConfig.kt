@@ -16,8 +16,10 @@ class PostWebConfig(private val handler: PostHandler) {
     fun routerFunction() =
             nest(path("/post"), router {
                 listOf(
-                    GET("/", handler::getPosts),
-                    GET("/{id}", handler::getPostById)
+                        GET("/", handler::getPosts),
+                        GET("/latest", handler::getPostsLatest),
+                        GET("/{id}", handler::getPostByIdWithAddReadCount)
+
                 )
             })
 

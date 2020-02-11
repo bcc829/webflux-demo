@@ -1,5 +1,6 @@
 package com.example.webfluxdemo.post.service
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,13 +16,20 @@ class GetPostServiceTest {
 
     @Test
     fun getPostsTest() {
-        getPostService.getPosts()
+        getPostService.getPosts().blockLast()
         assert(true)
     }
 
     @Test
+    fun getFiveLatestPostsTest() {
+        val posts = getPostService.getFiveLatestPosts()
+
+        assertEquals(posts.collectList().block()?.size, 5)
+    }
+
+    @Test
     fun getPostById() {
-        getPostService.getPostById(1)
+        getPostService.getPostByIdWithAddReadCount(1).block()
         assert(true)
     }
 

@@ -28,7 +28,7 @@ class PostRepositoryTest {
     @Test
     @Order(value = 2)
     fun postRepositoryGetPostsByTitleTest() {
-        val posts = postRepository.getPostsByTitleEquals("!@#$#%#$")
+        val posts = postRepository.getPostsByTitleContains("!@#$#%#$")
 
         assertTrue(posts.isNotEmpty())
     }
@@ -36,7 +36,7 @@ class PostRepositoryTest {
     @Test
     @Order(value = 3)
     fun postRepositoryDeleteTest() {
-        val posts = postRepository.getPostsByTitleEquals("!@#$#%#$")
+        val posts = postRepository.getPostsByTitleContains("!@#$#%#$")
 
         posts.forEach {
             postRepository.delete(it)
